@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Progress — HSK Tutor{% endblock %}
+
+{% block content %}
+    <h2>📊 Your Learning Progress</h2>
+
+    {% if progress %}
+        <div style="max-width: 700px; margin: 2rem auto;">
+        {% for level in range(1, 7) %}
+            <div style="margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: bold; font-size: 1.2rem;">HSK {{ level }}</span>
+                    <span style="font-size: 1.3rem; font-weight: bold; color: var(--primary);">{{ progress[level] }}%</span>
+                </div>
+                <div style="background: #f5b3b3; border-radius: 12px; height: 35px; box-shadow: 0 2px 4px rgba(0,0,0,0.1) inset;">
+                    <div style="height: 100%; width: {{ progress[level] }}%; background: linear-gradient(90deg, #f4c542, #9b1b1b); border-radius: 12px; transition: width 0.8s ease; box-shadow: 0 2px 6px rgba(155, 27, 27, 0.3);"></div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No progress yet — try some flashcards or a quiz!</p>
+    {% endif %}
+
+    <p style="margin-top: 3rem;"><a href="{{ url_for('home') }}" class="button">🏠 Back to Home</a></p>
+{% endblock %}
+

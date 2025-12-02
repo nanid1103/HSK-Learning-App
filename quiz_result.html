@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Result{% endblock %}
+
+{% block content %}
+    <div class="quiz-card">
+        <h2>🎉 Quiz Complete!</h2>
+
+        <p style="font-size: 1.5rem; margin: 2rem 0;">
+            You got <b style="color: var(--primary);">{{ correct }}</b> out of <b>{{ total }}</b> correct.
+        </p>
+
+        <p style="font-size: 1.2rem; margin: 1rem 0;">
+            Score: <b>{{ (correct / total * 100) | round | int }}%</b>
+        </p>
+
+        <div style="margin-top: 2rem;">
+            <a href="/home" class="button">🏠 Back to Home</a>
+            <a href="{{ url_for('quiz_start', level=level) }}" class="button">🔄 Try Again</a>
+        </div>
+    </div>
+{% endblock %}
+

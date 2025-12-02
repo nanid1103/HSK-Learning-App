@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}HSK {{ level }} Flashcards{% endblock %}
+
+{% block content %}
+    <h2>HSK {{ level }} Flashcards</h2>
+
+    {% if vocab %}
+        <div class="flashcard">{{ vocab.hanzi }}</div>
+        <p style="text-align:center;margin-top:12px">Pinyin: <strong>{{ vocab.pinyin }}</strong></p>
+        <p style="text-align:center">Meaning: <strong>{{ vocab.meaning }}</strong></p>
+
+        <form method="POST" style="text-align:center;margin-top:12px">
+            <button name="learned" value="{{ vocab.id }}">Mark as Learned</button>
+        </form>
+
+        <div class="nav-links">
+            {% if prev_id %}
+                <a class="button" href="{{ url_for('flashcards', level=level) }}?prev={{ vocab.id }}">← Previous</a>
+            {% else %}
+                <span style="color:#999;padding:8px 12px;border-radius:6px">← Previous</span>
+            {% endif %}
+
+            {% if next_id %}
+                <a class="button" href="{{ url_for('flashcards', level=level) }}?next={{ vocab.id }}">Next →</a>
+            {% else %}
+                <span style="color:#999;padding:8px 12px;border-radius:6px">Next →</span>
+            {% endif %}
+        </div>
+
+        <div style="text-align:center; margin-top: 2rem;">
+            <a href="{{ url_for('vocab_list', level=level) }}" style="color: var(--primary); margin: 0 1rem; text-decoration: none;">📚 Back to Vocabulary List</a>
+            <a href="{{ url_for('home') }}" style="color: var(--primary); margin: 0 1rem; text-decoration: none;">🏠 Home</a>
+        </div>
+    {% else %}
+        <p>No more flashcards!</p>
+        <p style="text-align:center; margin-top: 2rem;">
+            <a href="{{ url_for('vocab_list', level=level) }}" class="button">📚 Back to Vocabulary List</a>
+            <a href="{{ url_for('home') }}" class="button">🏠 Home</a>
+        </p>
+    {% endif %}
+
+{% endblock %}

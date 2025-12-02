@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Question{% endblock %}
+
+{% block content %}
+    {% if feedback %}
+        <!-- FEEDBACK VIEW -->
+        <div class="quiz-card">
+            <h2>Feedback</h2>
+            <p style="font-size: 1.2rem;"><b>{{ feedback }}</b></p>
+
+            <form method="POST" action="/hsk/{{ level }}/quiz/next">
+                <button type="submit">Next Question →</button>
+            </form>
+        </div>
+
+    {% else %}
+        <!-- QUESTION VIEW -->
+        <div class="quiz-card">
+            <h2>Question {{ current + 1 }} of {{ total }}</h2>
+            <p style="font-size: 1.3rem; margin: 1.5rem 0;"><b>Meaning:</b> {{ question.meaning }}</p>
+
+            <form method="POST" action="/hsk/{{ level }}/quiz/submit">
+                <input type="hidden" name="correct_id" value="{{ question.id }}">
+                
+                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                {% for option in options %}
+                    <button type="submit" name="answer" value="{{ option.id }}" style="font-size: 1.5rem; padding: 15px;">
+                        {{ option.hanzi }}
+                    </button>
+                {% endfor %}
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+

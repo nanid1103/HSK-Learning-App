@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}HSK {{ level }} Mini Quiz{% endblock %}
+
+{% block content %}
+    <h2>HSK {{ level }} — Mini Quiz</h2>
+
+    <div class="quiz-card">
+        <form method="POST">
+            <label>How many words do you want to practice?</label>
+            <p style="font-size: 0.9rem; color: #666;">(Must be multiple of 5)</p>
+            <input type="number" name="num" min="5" step="5" value="5" required>
+            <button type="submit">Start Quiz</button>
+        </form>
+        
+        <br>
+        <a href="/hsk/{{ level }}" style="color: var(--primary);">← Back to Vocabulary</a>
+    </div>
+{% endblock %}
+

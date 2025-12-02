@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome — HSK Tutor{% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>🪷欢迎来到 Lotus Cards🪷</h1>
+        <p style="font-size: 1.1rem; margin: 1.5rem 0;">📝Learn Mandarin the gentle way — deepen your vocabulary through HSK-based flashcards and quick practice quizzes📝</p>
+        <p style="margin-top: 2rem;">
+            <a class="button" href="{{ url_for('login') }}">Login</a>
+            <a class="button" href="{{ url_for('signup') }}">Sign Up</a>
+        </p>
+    </div>
+{% endblock %}
+
+

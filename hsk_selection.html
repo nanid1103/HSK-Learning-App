@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Select HSK Level{% endblock %}
+
+{% block content %}
+    <h2>Select HSK Level</h2>
+
+    <div class="hsk-grid">
+        {% for level in levels %}
+        <a href="/hsk/{{ level.level }}" class="hsk-card">
+            <h3>HSK {{ level.level }}</h3>
+            <p>{{ level.count }} words</p>
+            <p style="font-size: 2rem; margin: 0.5rem 0;">📚</p>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+

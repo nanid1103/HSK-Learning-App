@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}HSK {{ level }} Vocabulary{% endblock %}
+
+{% block content %}
+    <h2>HSK {{ level }} Vocabulary</h2>
+
+    <div class="vocab-search">
+        <form method="GET">
+            <input type="text" name="search" placeholder="Search word..." value="{{ search | default('') }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <p>
+        <a class="button" href="{{ url_for('flashcards', level=level) }}">📚 Learn by Flashcards</a>
+        <a class="button" href="{{ url_for('quiz_start', level=level) }}">🧠 Start Mini Quiz</a>
+    </p>
+
+    <div class="vocab-table-container">
+        <table class="vocab-table">
+            <thead>
+                <tr>
+                    <th>汉字 (Hanzi)</th>
+                    <th>拼音 (Pinyin)</th>
+                    <th>Meaning</th>
+                    <th>⭐</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for vocab in vocab_list %}
+                <tr>
+                    <td style="font-size: 1.5rem; font-weight: bold;">{{ vocab.hanzi }}</td>
+                    <td>{{ vocab.pinyin }}</td>
+                    <td>{{ vocab.meaning }}</td>
+                    <td>{% if vocab.learned %}✅{% else %}⭐{% endif %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}{% if search %}&search={{ search }}{% endif %}">← Previous</a>
+        {% else %}
+            <span style="color: #ccc;">← Previous</span>
+        {% endif %}
+        
+        <span style="margin: 0 1rem;">Page {{ page }} of {{ total_pages }}</span>
+        
+        {% if page < total_pages %}
+            <a href="?page={{ page + 1 }}{% if search %}&search={{ search }}{% endif %}">Next →</a>
+        {% else %}
+            <span style="color: #ccc;">Next →</span>
+        {% endif %}
+    </div>
+{% endblock %}
+

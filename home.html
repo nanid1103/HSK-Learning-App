@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — HSK Tutor{% endblock %}
+
+{% block content %}
+  <h1>🏠 Welcome Home!</h1>
+  <p style="margin-bottom: 2rem;">What would you like to study or improve today?㊫😎:</p>
+
+  <div style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
+    <a class="button" href="{{ url_for('hsk_select') }}" style="font-size: 1.5rem; padding: 2rem 3rem; display: block; text-align: center;">
+      📚 Select HSK Level
+    </a>
+
+    <a class="button" href="{{ url_for('progress') }}" style="font-size: 1.5rem; padding: 2rem 3rem; display: block; text-align: center;">
+      📊 View Progress
+    </a>
+  </div>
+{% endblock %}
+

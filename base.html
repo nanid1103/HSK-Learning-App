@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Mandarin Learning{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-brand">
+            <a href="{{ url_for('welcome') }}">你好！Welcome to Lotus Cards🪷🇨🇳 | Master HSK vocabularies here !</a>
+        </div>
+        <nav class="site-nav">
+            <a href="{{ url_for('hsk_select') }}">📚 HSK Levels</a>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('progress') }}">📊 Progress</a>
+                <a href="{{ url_for('home') }}">🏠 Home</a>
+                <a href="{{ url_for('logout') }}">🚪 Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">🔑 Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>💪 You got this! · 加油 - Cheer Up!</p>
+    </footer>
+</body>
+</html>
+

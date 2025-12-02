@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Login — HSK Tutor{% endblock %}
+
+{% block content %}
+    <h2>🔑 Login</h2>
+
+    {% if error %}
+    <div style="background: #ffebee; border: 2px solid #c62828; border-radius: 8px; padding: 12px 20px; margin: 1rem auto; max-width: 400px; color: #c62828; font-weight: bold;">
+        ❌ {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <label>Email:</label>
+        <input type="text" name="email" required><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required><br><br>
+
+        <div style="margin: 1rem 0;">
+            <label style="display: inline-flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" name="remember" value="yes" style="margin-right: 8px; width: auto;">
+                Remember Me
+            </label>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>New Here? <a href="/signup">Sign Up</a></p>
+{% endblock %}
+
